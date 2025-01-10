@@ -25,6 +25,20 @@ class DataBaseProvider{
         $req = $this->pdo->prepare("INSERT INTO A(idJ,score) VALUES (?,?);");
         $req-> execute($idJ,$score);
     }
+
+    public function getJoueur(string $nom,string $prenom): string{
+        $req = $this->pdo->prepare("select idJ from JOUEUR Where nom = ? and prenom = ?");
+        $req -> execute($nom,$prenom);
+        $id = $req->fetch();
+        if ($id === null){
+            $this->ajouterJoueur($nom,$prenom);
+            $req -> execute($nom,$prenom);
+            return $req->fetch();
+        }
+        else{
+            return $id;
+        }
+    }
     
     
 }
