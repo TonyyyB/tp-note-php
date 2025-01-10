@@ -41,16 +41,17 @@ class Quiz
         $html .= $this->renderUsername();
         return $html;
     }
-    public function renderAnswer(): string
+    public function renderAnswer(array $answers): string
     {
-        $finalScore = 0;
-        $html = "<h2>Voici les répéonses: </h2><ol>";
+        $_SESSION['score'] = 0;
+        $html = "<h2>Voici les réponses: </h2><ol>";
         foreach ($this->questions as $i => $q) {
             $html .= "<li>";
-            $html .= $q->renderAnswer([]);
+            $html .= $q->renderAnswer($answers[$q->getName()]);
             $html .= "</li>";
         }
         $html .= "</ol>";
+        $html .= "<h3>Votre score final est de " . $_SESSION['score'] . "/" . array_sum(array_map(fn($q): int => $q->getScore(), $this->questions)) . "</h3>";
         $html .= "<h3>Merci de votre participation</h3>";
         return $html;
     }

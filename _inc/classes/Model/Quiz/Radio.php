@@ -12,13 +12,31 @@ class Radio extends Question
         }
         return $html;
     }
-    public function renderAnswer(string|array $answer): string
+    public function renderAnswer(string|array|null $answer): string
     {
-        $html = "<h3>" . $this->label . "</h3>";
+        $score = strcasecmp($this->answer, $answer) === 0 ? $this->score : 0;
+        $_SESSION['score'] += $score;
+        $html = "<h3>" . $this->label . " " . $score . "/" . $this->score . "</h3>";
+        $html .= "<table>";
+        $html .= "<tr>";
+        $html .= "<td>Réponse attendue: </td>";
+        $html .= "<td>";
         foreach ($this->choices as $i => $choice) {
-            $html .= "<input type='radio' name='$this->name' disabled='disabled' value='$this->name' id='$this->name-$i'" . (strcasecmp($choice, $this->answer) === 0 ? "checked='checked'" : "") . ">";
+            $html .= "<input type='radio' name='$this->name-answer' disabled='disabled' value='$this->name' id='$this->name-$i-answer'" . (strcasecmp($choice, $this->answer) === 0 ? "checked='checked'" : "") . ">";
             $html .= "<label for='$this->name-$i'>$choice</label>";
         }
+        $html .= "</td>";
+        $html .= "</tr>";
+        $html .= "<tr>";
+        $html .= "<td>Réponse fournie: </td>";
+        $html .= "<td>";
+        foreach ($this->choices as $i => $choice) {
+            $html .= "<input type='radio' name='$this->name' disabled='disabled' value='$this->name' id='$this->name-$i'" . (strcasecmp($choice, $answer) === 0 ? "checked='checked'" : "") . ">";
+            $html .= "<label for='$this->name-$i'>$choice</label>";
+        }
+        $html .= "</td>";
+        $html .= "</tr>";
+        $html .= "</table>";
         return $html;
     }
 }

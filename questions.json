@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Révolution française",
+    "name": "Révolution_française",
     "type": "text",
     "text": "Quand a eu lieu la révolution française?",
     "choices": [],
@@ -24,7 +24,7 @@
   },
   {
     "id": 3,
-    "name": "Formule 1",
+    "name": "Formule_1",
     "type": "checkbox",
     "text": "Quel(s) pilotes de formule 1 a au moins 4 titres de champion du monde ?",
     "choices": [
