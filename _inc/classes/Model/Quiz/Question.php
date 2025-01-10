@@ -5,12 +5,14 @@ abstract class Question
     protected string $name;
     protected string $type;
     protected string $label;
+    protected array|null $choices;
     protected string|array $answer;
     protected int $score;
-    public function __construct(string $name, string $label, string|array $answer, int $score)
+    public function __construct(string $name, string $label, array|null $choices, string|array $answer, int $score)
     {
         $this->name = $name;
         $this->label = $label;
+        $this->choices = $choices;
         $this->answer = $answer;
         $this->score = $score;
     }
@@ -26,7 +28,11 @@ abstract class Question
     {
         return $this->label;
     }
-    public function getAnswer(): string
+    public function getChoices(): array|null
+    {
+        return $this->choices;
+    }
+    public function getAnswer(): string|array
     {
         return $this->answer;
     }
