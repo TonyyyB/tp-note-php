@@ -1,0 +1,47 @@
+[
+    {
+      "id": 1,
+      "name": "Révolution française",
+      "type": "text",
+      "text": "Quand a eu lieu la révolution française?",
+      "choices": [],
+      "answer": "1789",
+      "score": 2
+    },
+    {
+      "id": 2,
+      "name": "Cuisine",
+      "type": "radio",
+      "text": "Comment s'appelle la spatule qui sert à racler un récipient ?",
+      "choices": ["Marquise","Martine","Marise","Marine"],
+      "answer": "marise",
+      "score": 2
+    },
+    {
+      "id": 3,
+      "name": "Formule 1",
+      "type": "checkbox",
+      "text": "Quel(s) pilotes de formule 1 a au moins 4 titres de champion du monde ?",
+      "choices": ["Rosberg","Hamilton","Schumacher","Prost","Grosjean","Vettel","Senna"],
+      "answer": ["hamilton", "schumacher", "vettel", "prost"],
+      "score": 2
+    },
+    {
+      "id": 4,
+      "name": "FootBall",
+      "type": "text",
+      "text": "En quelle date fut titré l'équipe de france de football pour la première fois à la coupe du monde?",
+      "choices": [],
+      "answer": "1998",
+      "score": 2
+    },
+    {
+      "id": 5,
+      "name": "Badminton",
+      "type": "radio",
+      "text": "Comment s'appelle un joueur de badminton?",
+      "choices": ["Badiste","Badeur","Joueur de Badminton","BadMan"],
+      "answer": "Badiste",
+      "score": 2
+    }
+  ]
