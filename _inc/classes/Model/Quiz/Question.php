@@ -41,5 +41,5 @@ abstract class Question
         return $this->score;
     }
     public abstract function renderQuestion(): string;
-    public abstract function renderAnswer(): string;
+    public abstract function renderAnswer(string|array $answer): string;
 }

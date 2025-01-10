@@ -10,5 +10,11 @@ spl_autoload_register(static function (string $fqcn) {
     require_once('_inc/classes/' . $path);
 });
 $jsonProvider = new JsonProvider("questions.json");
-$quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
-echo $quiz->renderQuestion();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    var_dump($_POST);
+    $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
+    echo $quiz->renderAnswer();
+} else {
+    $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
+    echo $quiz->renderQuestion();
+}

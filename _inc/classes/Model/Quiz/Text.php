@@ -8,8 +8,9 @@ class Text extends Question
     {
         return "<h3>" . $this->label . "</h3><input type='text' name='$this->name'>";
     }
-    public function renderAnswer(): string
+    public function renderAnswer(string|array $answer): string
     {
-        return "";
+        return "<h3>" . $this->label . "</h3><input type='text' disabled='disabled' name='$this->name' value='$this->answer'>";
+        ;
     }
 }
