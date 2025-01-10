@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+use Model\DataSources\DataBaseProvider;
 use Model\DataSources\JsonProvider;
 use Model\Quiz\Checkbox;
 use Model\Quiz\Quiz;
@@ -18,3 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
     echo $quiz->renderQuestion();
 }
+$db = new DataBaseProvider();
+$db->ajouterJoueur("toto","nini");
+print_r($db->getJoueur("toto","nini"));
+print_r($db->getJoueur("toto","nana"));
+$db->ajouterScore("toto","nini",10);
+print_r($db->getScore("toto","nana"));
+print_r($db->getScore("toto","nini"));
