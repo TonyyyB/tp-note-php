@@ -11,16 +11,17 @@ if (isset($routes[$url])) {
     $controllerClass = $routes[$url]['controller'];
     $action = $routes[$url]['action'];
     $methods = $routes[$url]['methods'];
-    $redirect = isset($routes[$url]['redirect']) ? $routes[$url]['redirect'] : "/";
+    $redirectRelPath = isset($routes[$url]['redirect']) ? $routes[$url]['redirect'] : "/";
+    $protocol = $_SERVER['PROTOCOL'] = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+    $redirect = $protocol . "://" . $_SERVER['HTTP_HOST'] . $redirect;
 
     if (!in_array($_SERVER['REQUEST_METHOD'], $methods)) {
-        $protocol = $_SERVER['PROTOCOL'] = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http';
         http_response_code(405);
-        header("Location: " . $protocol . "://" . $_SERVER['HTTP_HOST'] . $redirect);
+        header("Location: " . $redirect);
         exit();
     }
 
-    $controller = new $controllerClass();
+    $controller = new $controllerClass($redirect);
     $controller->$action();
 } else {
     http_response_code(404);

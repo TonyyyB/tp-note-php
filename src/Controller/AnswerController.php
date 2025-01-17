@@ -4,7 +4,7 @@ namespace Controller;
 use Model\DataSources\DataBaseProvider;
 use Model\DataSources\JsonProvider;
 use Model\Quiz\Quiz;
-class AnswerController
+class AnswerController extends Controller
 {
     public function index()
     {

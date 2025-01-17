@@ -4,7 +4,7 @@ namespace Controller;
 use Model\DataSources\DataBaseProvider;
 use Model\DataSources\JsonProvider;
 use Model\Quiz\Quiz;
-class HomeController
+class HomeController extends Controller
 {
     public function index()
     {
