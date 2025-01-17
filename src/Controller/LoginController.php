@@ -23,9 +23,4 @@ class LoginController extends Controller
             $this->render('login', ["form" => new LoginForm("/login"), "error" => "Identifiant ou mot de passe incorrect"]);
         }
     }
-
-    private function isUserLoggedIn()
-    {
-        return isset($_SESSION['user']);
-    }
 }

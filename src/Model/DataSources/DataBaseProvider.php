@@ -32,29 +32,14 @@ class DataBaseProvider
         }
     }
 
-    public function ajouterScore(string $nom, string $prenom, int|float $score): void
+    public function ajouterScore(string $identifiant, int|float $score): void
     {
         try {
             $req = $this->pdo->prepare("INSERT INTO RESULTAT(idJ,scoreRes,dateRes) VALUES (?,?,?);");
-            $idJ = $this->getJoueur($nom, $prenom);
-            $req->execute([$idJ, $score, date("Y-m-d H:i:s")]);
+            $req->execute([$identifiant, $score, date("Y-m-d H:i:s")]);
         } catch (PDOException $e) {
             // Le joueur à déjà eu ce score donc useless
             echo $e->getMessage();
-        }
-    }
-
-    public function getJoueur(string $nom, string $prenom): int
-    {
-        $req = $this->pdo->prepare("select idj from JOUEUR where nom = ? and prenom = ?");
-        $req->execute([$nom, $prenom]);
-        $id = $req->fetch()['idj'];
-        if ($id === null) {
-            $this->ajouterJoueur($nom, $prenom);
-            $req->execute([$nom, $prenom]);
-            return $req->fetch()['idj'];
-        } else {
-            return $id;
         }
     }
 
@@ -94,5 +79,12 @@ class DataBaseProvider
         $query->execute([$identifiant, hash('sha256', $password)]);
         $result = $query->fetchAll();
         return count($result) > 0;
+    }
+
+    public function inscription(string $identifiant, string $prenom, string $nom, string $password): bool
+    {
+        $query = $this->pdo->prepare("INSERT INTO JOUEUR (idj, nom, prenom, passwordJ) VALUES (?,?,?,?)");
+        $query->execute([$identifiant, $nom, $prenom, hash('sha256', $password)]);
+        return $query->rowCount() > 0;
     }
 }

@@ -6,12 +6,12 @@ use Model\DataSources\JsonProvider;
 use Model\Quiz\Quiz;
 class AnswerController extends Controller
 {
-    public function get(): void
+    public function post(): void
     {
         $jsonProvider = new JsonProvider($_SERVER['DOCUMENT_ROOT'] . "/../data/questions.json");
         $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
-        echo $quiz->renderAnswer($_POST);
         $db = new DataBaseProvider();
-        $db->ajouterScore($_POST['lastname'], $_POST['firstname'], $_SESSION['score']);
+        $db->ajouterScore($_SESSION['user'], $_SESSION['score']);
+        $this->render('answer', ["quiz" => $quiz]);
     }
 }

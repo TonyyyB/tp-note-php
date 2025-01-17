@@ -32,4 +32,8 @@ abstract class Controller
     {
         $this->redirectTo("/");
     }
+    protected function isUserLoggedIn()
+    {
+        return isset($_SESSION['user']);
+    }
 }

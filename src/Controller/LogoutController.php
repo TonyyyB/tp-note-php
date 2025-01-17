@@ -12,9 +12,4 @@ class LogoutController extends Controller
     {
         $this->get();
     }
-
-    private function isUserLoggedIn()
-    {
-        return isset($_SESSION['user']);
-    }
 }

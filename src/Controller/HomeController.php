@@ -11,9 +11,4 @@ class HomeController extends Controller
 
         $this->render('home', []);
     }
-
-    private function isUserLoggedIn()
-    {
-        return isset($_SESSION['user']);
-    }
 }

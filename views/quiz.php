@@ -10,19 +10,14 @@
 
 <body>
     <header class="header">
-        <h1>Veuillez vous inscrire</h1>
+        <h1>Bienvenue sur notre quiz !</h1>
+        <a href="logout">
+            <button>Se déconnecter</button>
+        </a>
     </header>
     <?php
-    if (isset($error)) {
-        echo "<p style='color: red;'>$error</p>";
-    }
-    echo $form->render();
+    echo $quiz->renderQuestion();
     ?>
 </body>
-<script>
-    <?php
-    echo $form->script();
-    ?>
-</script>
 
 </html>
