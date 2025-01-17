@@ -6,7 +6,7 @@ use Model\DataSources\JsonProvider;
 use Model\Quiz\Quiz;
 class AnswerController extends Controller
 {
-    public function index()
+    public function get(): void
     {
         $jsonProvider = new JsonProvider($_SERVER['DOCUMENT_ROOT'] . "/../data/questions.json");
         $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());

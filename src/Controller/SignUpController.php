@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 namespace Controller;
-class HomeController extends Controller
+class SignUpController extends Controller
 {
     public function get(): void
     {
         if ($this->isUserLoggedIn()) {
-            $this->redirectTo("/quiz");
+            $this->redirectTo("/");
         }
 
         $this->render('home', []);

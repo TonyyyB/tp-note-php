@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 namespace Controller;
-class HomeController extends Controller
+class LogoutController extends Controller
 {
     public function get(): void
     {
-        if ($this->isUserLoggedIn()) {
-            $this->redirectTo("/quiz");
-        }
-
-        $this->render('home', []);
+        unset($_SESSION['user']);
+        $this->redirectTo("/");
+    }
+    public function post(): void
+    {
+        $this->get();
     }
 
     private function isUserLoggedIn()

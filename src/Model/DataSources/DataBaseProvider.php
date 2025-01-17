@@ -70,8 +70,7 @@ class DataBaseProvider
     {
         // Création de la table JOUEUR
         $sql = "CREATE TABLE IF NOT EXISTS JOUEUR (
-              PRIMARY KEY (idj),
-              idj TEXT  NOT NULL,
+              idj TEXT PRIMARY KEY,
               nom VARCHAR(42),
               prenom VARCHAR(42),
               passwordJ TEXT
@@ -89,14 +88,11 @@ class DataBaseProvider
         $this->pdo->exec($sql);
     }
 
-    public function verifConnexion():bool
+    public function verifConnexion(string $identifiant, string $password): bool
     {
-        $query = $this->pdo->prepare("SELECT idj, nom, prenom FROM PERSONNE WHERE idj = ? AND passwordJ = ?");
-        $query->execute([$_POST["identifiant"], hash('sha256', $_POST["password"])]);
+        $query = $this->pdo->prepare("SELECT idj, nom, prenom FROM JOUEUR WHERE idj = ? AND passwordJ = ?");
+        $query->execute([$identifiant, hash('sha256', $password)]);
         $result = $query->fetchAll();
         return count($result) > 0;
     }
-
-
-
 }
