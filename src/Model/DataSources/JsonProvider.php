@@ -35,6 +35,7 @@ class JsonProvider
             }
         }
     }
+    
 
     public function getQuestions(): array
     {
@@ -55,4 +56,17 @@ class JsonProvider
     {
         return new Checkbox($json['name'], $json['text'], $json['choices'], $json['answer'], intval($json['score']));
     }
+
+    function exportToJson($fileName) : void {
+        $json_data = json_encode($fileName, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+        if (file_put_contents($fileName, $json_data)) {
+            echo "Fichier JSON exporté avec succès sous le nom : " . $fileName . PHP_EOL;
+        } else {
+            echo "Une erreur s'est produite lors de l'exportation." . PHP_EOL;
+        }
+    }
+
+
+
 }
