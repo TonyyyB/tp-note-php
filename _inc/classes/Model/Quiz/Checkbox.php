@@ -37,7 +37,7 @@ class Checkbox extends Question
         $html .= "<td>Réponse fournie: </td>";
         $html .= "<td>";
         foreach ($this->choices as $i => $c) {
-            $html .= "<input type='checkbox' name='$this->name[]' disabled='disabled' value='$this->name-$i' id='$this->name-$i'" . (in_array($c, $answers) ? "checked='checked'" : "") . ">";
+            $html .= "<input type='checkbox' name='$this->name[]' disabled='disabled' value='$this->name-$i' id='$this->name-$i'" . ($answers === null ? "" : (in_array($c, $answers) ? "checked='checked'" : "")) . ">";
             $html .= "<label for='$this->name-$i'>$c</label>";
         }
         $html .= "</td>";

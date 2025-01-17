@@ -23,8 +23,13 @@ class DataBaseProvider
 
     public function ajouterJoueur(string $nom, string $prenom): void
     {
-        $sql = $this->pdo->prepare("INSERT INTO JOUEUR(nom,prenom) VALUES (?, ?);");
-        $sql->execute([$nom, $prenom]);
+        try {
+            $sql = $this->pdo->prepare("INSERT INTO JOUEUR(nom,prenom) VALUES (?, ?);");
+            $sql->execute([$nom, $prenom]);
+        } catch (PDOException $e) {
+            // Le joueur à déjà eu ce score donc useless
+            echo $e->getMessage();
+        }
     }
 
     public function ajouterScore(string $nom, string $prenom, int $score): void
@@ -35,6 +40,7 @@ class DataBaseProvider
             $req->execute([$idJ, $score]);
         } catch (PDOException $e) {
             // Le joueur à déjà eu ce score donc useless
+            echo $e->getMessage();
         }
     }
 
