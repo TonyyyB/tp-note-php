@@ -7,10 +7,14 @@ class Checkbox extends Question
     public function renderQuestion(): string
     {
         $html = "<h3>" . $this->label . "</h3>";
+        $html .= "<table>";
         foreach ($this->choices as $i => $c) {
-            $html .= "<input type='checkbox' name='$this->name[]' value='$c' id='$this->name-$i'>";
-            $html .= "<label for='$this->name-$i'>$c</label>";
+            $html .= "<tr>";
+            $html .= "<td>"."<input type='checkbox' name='$this->name[]' value='$c' id='$this->name-$i'>"."</td>";
+            $html .= "<td>"."<label for='$this->name-$i'>$c</label>"."</td>";
+            $html.= "</tr>";
         }
+        $html.= "</table>";
         return $html;
     }
     public function renderAnswer(string|array|null $answers): string

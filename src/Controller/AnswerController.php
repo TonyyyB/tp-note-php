@@ -11,7 +11,7 @@ class AnswerController extends Controller
         $jsonProvider = new JsonProvider($_SERVER['DOCUMENT_ROOT'] . "/../data/questions.json");
         $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
         $db = new DataBaseProvider();
-        $db->ajouterScore($_SESSION['user'], $_SESSION['score']);
         $this->render('answer', ["quiz" => $quiz]);
+        $db->ajouterScore($_SESSION['user'], $_SESSION['score']);
     }
 }
