@@ -4,15 +4,8 @@ require 'autoloader.php';
 Autoloader::register();
 use DateTime;
 session_start();
-if (isset($_SESSION["connectionTime"]) && time() - $_SESSION["connectionTime"] > 60 * 30) {
-    unset($_SESSION["idPe"]);
-    unset($_SESSION["connectionTime"]);
-}
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ./');
-    exit();
-}
-$dp = new DataProvider();
+
+
 $pdo = $dp->getPDO();
 $query = $pdo->prepare("SELECT identifiantPe FROM PERSONNE WHERE identifiantPe = ?");
 $query->execute([$_POST["identifiant"]]);

@@ -70,21 +70,31 @@ class DataBaseProvider
     {
         // Création de la table JOUEUR
         $sql = "CREATE TABLE IF NOT EXISTS JOUEUR (
-          idj INTEGER PRIMARY KEY AUTOINCREMENT,
-          nom VARCHAR(42),
-          prenom VARCHAR(42)
-        );";
+              PRIMARY KEY (idj),
+              idj TEXT  NOT NULL,
+              nom VARCHAR(42),
+              prenom VARCHAR(42),
+              passwordJ TEXT
+            );";
         $this->pdo->exec($sql);
 
         // Création de la table RESULTAT avec clé primaire composite
         $sql = "CREATE TABLE IF NOT EXISTS RESULTAT (
-          idj INT NOT NULL,
+          idj TEXT NOT NULL,
           scoreRes INT NOT NULL,
           dateRes DATE NOT NULL,
           PRIMARY KEY (idj, scoreRes, dateRes),
           FOREIGN KEY (idj) REFERENCES JOUEUR (idj)
         );";
         $this->pdo->exec($sql);
+    }
+
+    public function verifConnexion():bool
+    {
+        $query = $this->pdo->prepare("SELECT idj, nom, prenom FROM PERSONNE WHERE idj = ? AND passwordJ = ?");
+        $query->execute([$_POST["identifiant"], hash('sha256', $_POST["password"])]);
+        $result = $query->fetchAll();
+        return count($result) > 0;
     }
 
 
