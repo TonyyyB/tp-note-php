@@ -1,0 +1,144 @@
+/* Style de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Style pour l'en-tête */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Style pour les boutons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Style pour les liens */
+a {
+    text-decoration: none;
+}
+
+/* Style pour les messages d'erreur */
+p {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+}
+
+/* Style pour les formulaires */
+form {
+    width: 300px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style pour les champs de formulaire spécifiques */
+form input[type="text"], form input[type="password"], form input[type="email"] {
+    font-size: 16px;
+}
+
+/* Style pour la page d'inscription */
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="submit"] {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #007B9A;
+}
+
+/* Style pour les liens d'inscription et de connexion */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #4CAF50;
+}
+
+a:hover {
+    color: #45a049;
+}
+
+/* Style pour les messages d'erreur dans le formulaire */
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Responsive Design - Ajustements pour les petits écrans */
+@media screen and (max-width: 600px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    button, form input[type="submit"] {
+        width: 100%;
+    }
+
+    form {
+        width: 90%;
+    }
+}
