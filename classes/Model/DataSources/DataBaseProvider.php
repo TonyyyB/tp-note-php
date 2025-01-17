@@ -11,7 +11,7 @@ class DataBaseProvider
     public function __construct()
     {
         try {
-            $this->pdo = new PDO('sqlite:db.sqlite');
+            $this->pdo = new PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/../data/db.sqlite");
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->initTable();
@@ -32,7 +32,7 @@ class DataBaseProvider
         }
     }
 
-    public function ajouterScore(string $nom, string $prenom, int $score): void
+    public function ajouterScore(string $nom, string $prenom, int|float $score): void
     {
         try {
             $req = $this->pdo->prepare("INSERT INTO RESULTAT(idJ,score) VALUES (?,?);");
