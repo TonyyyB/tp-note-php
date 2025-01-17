@@ -21,4 +21,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quiz = new Quiz("Mon quizz", $jsonProvider->getQuestions());
     echo $quiz->renderQuestion();
 }
-print_r($_GET);
