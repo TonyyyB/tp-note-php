@@ -14,6 +14,9 @@
         <a href="logout">
             <button>Se déconnecter</button>
         </a>
+        <a href="result">
+            <button>Voir les scores</button>
+        </a>
     </header>
     <?php
     echo $quiz->renderQuestion();

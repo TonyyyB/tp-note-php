@@ -43,12 +43,11 @@ class DataBaseProvider
         }
     }
 
-    public function getScore(string $nom, string $prenom): int
+    public function getScore(int|string $idJ): array
     {
-        $req = $this->pdo->prepare("select score from RESULTAT natural join JOUEUR where nom = ? and prenom = ?");
-        $req->execute([$nom, $prenom]);
-        $res = $req->fetch();
-        return $res === false ? 0 : $res['score'];
+        $req = $this->pdo->prepare("select scoreRes, dateRes from RESULTAT natural join JOUEUR where idJ = ? order by dateRes");
+        $req->execute([$idJ]);
+        return $req->fetchAll();
     }
 
     public function initTable(): void

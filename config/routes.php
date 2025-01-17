@@ -30,5 +30,10 @@ return [
         'controller' => \Controller\AnswerController::class,
         'methods' => ['POST'],
         'redirect' => '/'
+    ],
+    '/result' => [
+        'controller' => \Controller\ResultController::class,
+        'methods' => ['GET'],
+        'redirect' => '/'
     ]
 ];
