@@ -31,7 +31,7 @@ class Quiz
     public function renderQuestion(): string
     {
         $html = "<h2>Bienvenue sur notre Quiz !</h2>";
-        $html .= "<form method='POST' action='index.php'><ol>";
+        $html .= "<form method='POST' action='/answer'><ol>";
         foreach ($this->questions as $q) {
             $html .= "<li>";
             $html .= $q->renderQuestion();

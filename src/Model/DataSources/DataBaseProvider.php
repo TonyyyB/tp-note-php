@@ -35,9 +35,9 @@ class DataBaseProvider
     public function ajouterScore(string $nom, string $prenom, int|float $score): void
     {
         try {
-            $req = $this->pdo->prepare("INSERT INTO RESULTAT(idJ,score) VALUES (?,?);");
+            $req = $this->pdo->prepare("INSERT INTO RESULTAT(idJ,scoreRes,dateRes) VALUES (?,?,?);");
             $idJ = $this->getJoueur($nom, $prenom);
-            $req->execute([$idJ, $score]);
+            $req->execute([$idJ, $score, date("Y-m-d H:i:s")]);
         } catch (PDOException $e) {
             // Le joueur à déjà eu ce score donc useless
             echo $e->getMessage();
@@ -70,19 +70,20 @@ class DataBaseProvider
     {
         // Création de la table JOUEUR
         $sql = "CREATE TABLE IF NOT EXISTS JOUEUR (
-        idj INTEGER PRIMARY KEY AUTOINCREMENT,
-        nom VARCHAR(42),
-        prenom VARCHAR(42)
-    );";
+          idj INTEGER PRIMARY KEY AUTOINCREMENT,
+          nom VARCHAR(42),
+          prenom VARCHAR(42)
+        );";
         $this->pdo->exec($sql);
 
         // Création de la table RESULTAT avec clé primaire composite
         $sql = "CREATE TABLE IF NOT EXISTS RESULTAT (
-        idj INT NOT NULL,
-        score INT NOT NULL,
-        PRIMARY KEY (idj, score),
-        FOREIGN KEY (idj) REFERENCES JOUEUR (idj)
-    );";
+          idj INT NOT NULL,
+          scoreRes INT NOT NULL,
+          dateRes DATE NOT NULL,
+          PRIMARY KEY (idj, scoreRes, dateRes),
+          FOREIGN KEY (idj) REFERENCES JOUEUR (idj)
+        );";
         $this->pdo->exec($sql);
     }
 
